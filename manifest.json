@@ -11,17 +11,17 @@
       "matches": [
         "http://*/*", "file://*/*"
       ],
-      "js": ["csvify.js"]
+      "js": ["background.js", "csvify.js"]
     }
   ],
   "background": {
     "scripts": [
       "background.js"
-    ],
-    "persistent": false
+    ]
   },
   "permissions": [
     "tabs",
+    "contextMenus",
     "<all_urls>"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"

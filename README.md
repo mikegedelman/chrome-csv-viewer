@@ -1,33 +1,28 @@
 # Chrome CSV Extension
 
-Automatically view, graph and explore CSV files in browser.
+Ability view, graph and explore CSV files in browser by right-clicking any link.
+
+Notice this currently won't work for pasted URLs.
 
 # Usage
 
-1. Install extension from [webstore][]
-2. Check "Allow access to file URLs" in `chrome://extensions` listing
-3. Open local or remote csv files in Chrome
+For now clone this repo, then issue the following two commands to pull dependencies:
 
-[webstore]: https://chrome.google.com/webstore/detail/recline-csv-viewer/ibfcfelnbfhlbpelldnngdcklnndhael
+```
+git submodule init
+git submodule update
+```
+
+Then go to chrome://extensions, check "Developer mode" and do "Load unpacked extension..." and point it to the directory you cloned into.
+
 
 # Some Developer Notes
 
-By default Chrome will download a CSV file to disk. We want to prevent this
-default behaviour and handle the CSV file in the extension.
+Original author is trying to catch every time a CSV would be downloaded in Chrome and display it, which would certainly be ideal. Unfortunately it isn't working too well at the moment.
 
-It would be much preferable to simply over-ride the file handler for CSV files
-(identified by mimetype or extension). Unfortunately there seems to be no way
-to do this at present (see [this issue][issue], and [this thread][thread])).
+To circumvent this I simply added a conext menu item on links that opens the CSV in a new tab.
 
-[issue]: http://code.google.com/p/chromium/issues/detail?id=35070
-[thread]: https://groups.google.com/a/chromium.org/forum/?fromgroups=#!topic/chromium-extensions/p2y18CG7zn4
-
-The approach of this extension is therefore:
-
-* Add a click event listeners on each page
-* Intercept these if the target file is a CSV (identified crudely by the .csv
-  extension)
-* Render the CSV in page
+Eventually I'd like to add some more features to the CSV viewer itself and possibly give a shot at displaying ALL CSVs instead of downloading them.
 
 # Building
 
@@ -38,6 +33,9 @@ To build the ZIP file for the Chrome webstore do:
 ZIP file will be in dist
 
 # Copyright & License
+
+Note: this copyright from forked repo, think I'm supposed to keep it here but please
+contact me if I need to do otherwise.
 
 Copyright 2012-2013 Rufus Pollock. Note that this utilizes various third-party
 libraries which may be differently licensed.
